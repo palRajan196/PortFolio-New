@@ -15,23 +15,24 @@ app.post("/", (req, resp) =>{
 })
 
 app.post("/AI", async(req, resp)=>{
+   // console.log(req.body.message);
     try{
         const message = req.body.message;
         console.log(message);
         const genAI = new GoogleGenerativeAI(APIKey);
         // const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro"});
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+        const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview"});
         const result = await model.generateContent(message);
        // resp.send(result.response.text());
+       console.log("Working");
        resp.send(result);
        
-    //    console.log(result.response.text());
+    //console.log(result.response.text());
     }
     catch(err){
-        console.log("Error");
+        console.log("Error", err);
         resp.send("Error : " +err);
     }
-   
 })
 
 
