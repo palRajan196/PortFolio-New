@@ -15,30 +15,48 @@
 #Home-btn button{
   width: 170px;
   height: 30px;
+  position: relative;
   border-radius: 5px;
   font-size: 18px;
   font-weight: 700;
-  border:2px solid rgb(143, 10, 10);
-  box-shadow: 0 0 25px 3px rgb(112, 12, 213);
   color: rgb(239, 231, 231);
-  background-color: red;
+  background-color: black;
   transition: 0.5s;
-  animation: Ai 2s ease-in  infinite;
 }
 #Home-btn button:hover{
   cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgb(51, 0, 255);
-  background-color: #c11428;
+  border-radius: 5px;
+  background-color: #252525;
 }
-@keyframes Ai {
-  from{
-    box-shadow: 0 0 15px rgb(10, 10, 149);
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+#Home-btn button::before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  position: absolute;
+  background-image:conic-gradient(from var(--angle), transparent 0%, red,blue,red);
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 5px;
+  animation: effect 3s linear infinite;
+}
+@keyframes effect{
+  0%{
+      --angle:0deg;  
   }
-  to{
-    box-shadow: 0 0 10px rgb(63, 2, 18);
+  100%{
+    --angle:360deg;
   }
-  
+}
+#Home-btn button::before{
+  filter: blur(1px);
 }
 
 #AIText{
@@ -253,7 +271,7 @@ html{
   align-items: center;
   flex-direction: column;
   font-size: 15px;
-  background: url("./Photos/Gif.webp");
+  background: ul("./Photos/Gif.webp");
   background-repeat: no-repeat;
   background-position: center;
 }
